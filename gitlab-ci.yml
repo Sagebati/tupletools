@@ -1,0 +1,28 @@
+stages:
+  - build
+  - deploy
+
+rust-latest:
+  stage: build
+  image: rust:latest
+  script:
+    - cargo build --verbose
+    - cargo test --verbose
+
+rust-nightly:
+  stage: build
+  image: rustlang/rust:nightly
+  script:
+    - cargo build --verbose
+    - cargo test --verbose
+  allow_failure: true
+
+deploy-cargo:
+  stage: deploy
+  image: rust:latest
+  only:
+    - master
+  script:
+    - cargo login $login
+    - cargo package
+    - cargo publish
