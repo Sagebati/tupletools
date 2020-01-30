@@ -3,6 +3,8 @@ TupleTools
 
 Provides utility functions like fst and snd. In development.
 
+Works with #[no_std] !
+
 # Example:
 
 ```rust
