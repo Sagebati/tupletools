@@ -3,6 +3,7 @@ name = "tupletools"
 version = "0.1.0"
 authors = ["Samuel Batissou <samuelbatissou@gmail.com>"]
 description = "Utility functions for tuples"
+license = "MIT"
 edition = "2018"
 keywords =["tuple", "snd", "fst", "helper"]
 
