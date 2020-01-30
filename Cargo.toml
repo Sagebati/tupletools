@@ -2,9 +2,21 @@
 name = "tupletools"
 version = "0.1.0"
 authors = ["Samuel Batissou <samuelbatissou@gmail.com>"]
+description = "Utility functions for tuples"
 edition = "2018"
+keywords =["tuple", "snd", "fst", "helper"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[badges]
+gitlab = {repository = "Sabati/tupletools"}
+maintenance = {status = "actvely-developed"}
+
+[profile.release]
+lto = true
+
+[features]
+default = ["use_std"]
+use_std = []
+
 [dependencies]
-impl-trait-for-tuples = "0.1.3"

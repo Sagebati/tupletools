@@ -1,3 +1,5 @@
+
+
 pub trait Fst {
     type Ret;
     fn fst(&self) -> &Self::Ret;

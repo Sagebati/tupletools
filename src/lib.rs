@@ -1,3 +1,5 @@
+#![cfg_attr(not(feature = "use_std"), no_std)]
+
 mod fst;
 mod snd;
 mod trd;
@@ -6,7 +8,7 @@ pub use fst::Fst;
 pub use snd::Snd;
 pub use trd::Trd;
 
-
+#[cfg(feature = "use_std")]
 #[cfg(test)]
 mod tests {
     use crate::{Fst, Snd};
