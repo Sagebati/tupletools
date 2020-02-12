@@ -6,17 +6,17 @@ mod snd;
 mod trd;
 
 pub use fst::Fst;
-pub use snd::Snd;
-pub use trd::Trd;
 pub use ops::add::Addition;
 pub use ops::div::Division;
 pub use ops::mul::Multiply;
 pub use ops::sub::Subtraction;
+pub use snd::Snd;
+pub use trd::Trd;
 
 #[cfg(feature = "use_std")]
 #[cfg(test)]
 mod tests {
-    use crate::{Fst, Snd, Addition, Multiply, Subtraction, Division};
+    use crate::{Addition, Division, Fst, Multiply, Snd, Subtraction};
 
     #[test]
     fn fst() {
@@ -54,15 +54,9 @@ mod tests {
         let y = (1, 1, 1);
         let z = (1, 1, 1);
 
-        assert_eq!(
-            y.add(z),
-            (2, 2, 2)
-        );
+        assert_eq!(y.add(z), (2, 2, 2));
 
-        assert_eq!(
-            x.into_iter().fold((0,0,0),|a,b| a.add(b)),
-            (2,3,2)
-        );
+        assert_eq!(x.into_iter().fold((0, 0, 0), |a, b| a.add(b)), (2, 3, 2));
     }
 
     #[test]
@@ -71,15 +65,9 @@ mod tests {
         let y = (1, 1, 1);
         let z = (1, 1, 1);
 
-        assert_eq!(
-            y.mul(z),
-            (1, 1, 1)
-        );
+        assert_eq!(y.mul(z), (1, 1, 1));
 
-        assert_eq!(
-            x.into_iter().fold((0,0,0),|a,b| a.mul(b)),
-            (0,0,0)
-        );
+        assert_eq!(x.into_iter().fold((0, 0, 0), |a, b| a.mul(b)), (0, 0, 0));
     }
 
     #[test]
@@ -88,15 +76,9 @@ mod tests {
         let y = (1, 1, 1);
         let z = (1, 1, 1);
 
-        assert_eq!(
-            y.sub(z),
-            (0, 0, 0)
-        );
+        assert_eq!(y.sub(z), (0, 0, 0));
 
-        assert_eq!(
-            x.into_iter().fold((0,0,0),|a,b| a.sub(b)),
-            (-2,-3,-2)
-        );
+        assert_eq!(x.into_iter().fold((0, 0, 0), |a, b| a.sub(b)), (-2, -3, -2));
     }
 
     #[test]
@@ -105,14 +87,11 @@ mod tests {
         let y = (1, 1, 1);
         let z = (1, 1, 1);
 
-        assert_eq!(
-            y.div(z),
-            (1, 1, 1)
-        );
+        assert_eq!(y.div(z), (1, 1, 1));
 
         assert_eq!(
-            x.into_iter().fold((1,1,1),|a,b| a.div(b)),
-            (1,1/2,1)
+            x.into_iter().fold((1, 1, 1), |a, b| a.div(b)),
+            (1, 1 / 2, 1)
         );
     }
 }

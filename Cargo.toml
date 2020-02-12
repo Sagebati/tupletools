@@ -1,6 +1,6 @@
 [package]
 name = "tupletools"
-version = "0.1.1"
+version = "0.2.1"
 authors = ["Samuel Batissou <samuelbatissou@gmail.com>"]
 description = "Utility functions for tuples"
 license = "MIT"

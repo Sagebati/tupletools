@@ -36,7 +36,7 @@ gen_ops() {
 gen_impl() {
   for i in $(seq 2 16); do
     echo "
-      impl<T: $3<Output=T> + Copy> $1<T> for $(gen_tuple $i){
+      impl<T: $3<Output=T>> $1<T> for $(gen_tuple $i){
           fn $2(self, other: Self) -> Self {
             $(gen_ops $i self $4 other)
           }
