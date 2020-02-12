@@ -37,6 +37,5 @@ deploy-cargo:
     - master
   script:
     - cargo login $login
-    - cargo fmt
     - cargo package
     - cargo publish
