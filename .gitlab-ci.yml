@@ -9,12 +9,25 @@ rust-latest:
     - cargo build --verbose
     - cargo test --verbose
 
+rust-latest-no-std:
+  stage: build
+  image: rust:latest
+  script:
+    - cargo build --no-default-features --verbose
+
 rust-nightly:
   stage: build
   image: rustlang/rust:nightly
   script:
     - cargo build --verbose
     - cargo test --verbose
+  allow_failure: true
+
+rust-nightly-no-std:
+  stage: build
+  image: rustlang/rust:nightly
+  script:
+    - cargo build --no-default-features --verbose
   allow_failure: true
 
 deploy-cargo:
