@@ -46,7 +46,7 @@ gen_impl() {
 }
 
 echo "
-use std::ops::$3;
+use core::ops::$3;
 
 pub trait $1<T> {
     fn $2(self, other: Self) -> Self;
