@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+set -f # remove wildcard
+
+# first param Trait name
+# second param function trait name
+# third param function operator trait
+# fourth is the operator "/" or "+"
+
+trait="
+
+
+"
+
+gen_tuple() {
+  r="("
+  for i in $(seq 1 $1); do
+    if test $i -eq $1; then
+      r="$r $2"
+    else
+      r="$r $2,"
+    fi
+  done
+  r="$r)"
+  echo $r
+}
+
+gen_cast() {
+  echo "("
+  for v in $(seq 0 $(($1 - 1))); do
+    echo "$3::from($2.$v),"
+  done
+  echo ")"
+}
+
+gen_impl_from() {
+  #
+  for i in $(seq 2 16); do
+    echo "
+    impl<T, Too> CastOneToOne<Too> for $(gen_tuple $i T)
+      where Too: From<T>
+      {
+        type Ret = $(gen_tuple $i Too);
+        fn cast<Too>(self) -> Self::Ret {
+        (
+          $(gen_cast $i self Too)
+        )
+      }
+    }
+    "
+  done
+}
+
+gen_impl_into() {
+  #
+  for i in $(seq 2 16); do
+    echo "
+    impl<T, Too> CastOneToOne<Too> for $(gen_tuple $i T)
+      where $1
+      {
+        type Ret = $(gen_tuple $i Too);
+        fn cast<Too>(self) -> Self::Ret {
+        (
+          $(gen_cast $i self Too)
+        )
+      }
+    }
+    "
+  done
+}
+
+echo "
+pub trait CastOneToOne<Too> {
+    type Ret;
+    fn cast(self) -> Self::Ret;
+}
+"
+
+# test
+gen_impl_from
