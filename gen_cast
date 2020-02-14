@@ -25,10 +25,18 @@ gen_tuple() {
   echo $r
 }
 
-gen_cast() {
+gen_cast_from() {
   echo "("
   for v in $(seq 0 $(($1 - 1))); do
     echo "$3::from($2.$v),"
+  done
+  echo ")"
+}
+
+gen_cast_into() {
+  echo "("
+  for v in $(seq 0 $(($1 - 1))); do
+    echo "$2.$v.into(),"
   done
   echo ")"
 }
@@ -41,10 +49,8 @@ gen_impl_from() {
       where Too: From<T>
       {
         type Ret = $(gen_tuple $i Too);
-        fn cast<Too>(self) -> Self::Ret {
-        (
-          $(gen_cast $i self Too)
-        )
+        fn cast(self) -> Self::Ret {
+          $(gen_cast_from $i self Too)
       }
     }
     "
@@ -53,16 +59,14 @@ gen_impl_from() {
 
 gen_impl_into() {
   #
-  for i in $(seq 2 16); do
+  for i in $(seq 1 16); do
     echo "
     impl<T, Too> CastOneToOne<Too> for $(gen_tuple $i T)
-      where $1
+      where T: Into<Too>
       {
         type Ret = $(gen_tuple $i Too);
-        fn cast<Too>(self) -> Self::Ret {
-        (
-          $(gen_cast $i self Too)
-        )
+        fn cast(self) -> Self::Ret {
+          $(gen_cast_into $i self)
       }
     }
     "

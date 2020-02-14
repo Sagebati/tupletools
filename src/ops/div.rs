@@ -4,6 +4,12 @@ pub trait Division<T> {
     fn div(self, other: Self) -> Self;
 }
 
+impl<T: Div<Output = T>> Division<T> for (T,) {
+    fn div(self, other: Self) -> Self {
+        (self.0 / other.0,)
+    }
+}
+
 impl<T: Div<Output = T>> Division<T> for (T, T) {
     fn div(self, other: Self) -> Self {
         (self.0 / other.0, self.1 / other.1)

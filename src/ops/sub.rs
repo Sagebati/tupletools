@@ -4,6 +4,12 @@ pub trait Subtraction<T> {
     fn sub(self, other: Self) -> Self;
 }
 
+impl<T: Sub<Output = T>> Subtraction<T> for (T,) {
+    fn sub(self, other: Self) -> Self {
+        (self.0 - other.0,)
+    }
+}
+
 impl<T: Sub<Output = T>> Subtraction<T> for (T, T) {
     fn sub(self, other: Self) -> Self {
         (self.0 - other.0, self.1 - other.1)

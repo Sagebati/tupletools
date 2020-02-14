@@ -21,6 +21,18 @@ macro_rules! impl_fst {
     };
 }
 
+impl<T> Fst for (T,) {
+    type Ret = T;
+
+    fn fst(&self) -> &Self::Ret {
+        &self.0
+    }
+
+    fn into_fst(self) -> Self::Ret {
+        self.0
+    }
+}
+
 impl_fst!(T0,T1;T0);
 impl_fst!(T0,T1, T2;T0);
 impl_fst!(T0,T1, T2 , T3;T0);

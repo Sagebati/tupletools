@@ -4,6 +4,13 @@ pub trait Addition<T> {
     fn add(self, other: Self) -> Self;
 }
 
+impl<T: Add<Output = T>> Addition<T> for (T,) {
+    fn add(self, other: Self) -> Self {
+        (self.0 + other.0,)
+    }
+}
+
+
 impl<T: Add<Output = T>> Addition<T> for (T, T) {
     fn add(self, other: Self) -> Self {
         (self.0 + other.0, self.1 + other.1)

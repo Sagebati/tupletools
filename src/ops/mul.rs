@@ -4,19 +4,25 @@ pub trait Multiply<T> {
     fn mul(self, other: Self) -> Self;
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, ) {
+    fn mul(self, other: Self) -> Self {
+        (self.0 * other.0, )
+    }
+}
+
+impl<T: Mul<Output=T>> Multiply<T> for (T, T) {
     fn mul(self, other: Self) -> Self {
         (self.0 * other.0, self.1 * other.1)
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T) {
     fn mul(self, other: Self) -> Self {
         (self.0 * other.0, self.1 * other.1, self.2 * other.2)
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -27,7 +33,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T) {
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -39,7 +45,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T) {
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -52,7 +58,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T) {
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -66,7 +72,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T) {
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -81,7 +87,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T) {
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -97,7 +103,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T) {
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -114,7 +120,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T) {
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -132,7 +138,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T) {
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -151,7 +157,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T) {
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -171,7 +177,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T)
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -192,7 +198,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T,
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
@@ -214,7 +220,7 @@ impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T,
     }
 }
 
-impl<T: Mul<Output = T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T) {
+impl<T: Mul<Output=T>> Multiply<T> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T) {
     fn mul(self, other: Self) -> Self {
         (
             self.0 * other.0,
