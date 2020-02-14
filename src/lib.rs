@@ -15,7 +15,7 @@ pub use cast::CastOneToOne;
 pub use snd::Snd;
 pub use trd::Trd;
 
-#[cfg(feature = "use_std")]
+#[cfg(not(feature = "no_std"))]
 #[cfg(test)]
 mod tests {
     use crate::{Addition, Division, Fst, Multiply, Snd, Subtraction, CastOneToOne};
