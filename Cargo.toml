@@ -1,9 +1,9 @@
 [package]
 name = "tupletools"
-version = "0.2.4"
+version = "0.2.5"
 authors = ["Samuel Batissou <samuelbatissou@gmail.com>"]
 description = "Utility functions for tuples"
-license = "MIT"
+license = "Apache-2.0"
 edition = "2018"
 keywords =["tuple", "snd", "fst", "helper"]
 readme = "README.md"
