@@ -1,22 +1,24 @@
-#![cfg_attr(not(feature = "use_std"), no_std)]
+#![cfg_attr(feature = "no_std", no_std)]
 
 mod fst;
 mod ops;
 mod snd;
 mod trd;
+mod cast;
 
 pub use fst::Fst;
 pub use ops::add::Addition;
 pub use ops::div::Division;
 pub use ops::mul::Multiply;
 pub use ops::sub::Subtraction;
+pub use cast::CastOneToOne;
 pub use snd::Snd;
 pub use trd::Trd;
 
 #[cfg(feature = "use_std")]
 #[cfg(test)]
 mod tests {
-    use crate::{Addition, Division, Fst, Multiply, Snd, Subtraction};
+    use crate::{Addition, Division, Fst, Multiply, Snd, Subtraction, CastOneToOne};
 
     #[test]
     fn fst() {
@@ -93,5 +95,11 @@ mod tests {
             x.into_iter().fold((1, 1, 1), |a, b| a.div(b)),
             (1, 1 / 2, 1)
         );
+    }
+
+    #[test]
+    fn cast_one_to_one() {
+        let x: (u32, u32, u32, u32, u32, u32) = (3, 4, 5, 6, 7, 8);
+        let _z: (u64, u64, u64, u64, u64, u64) = x.cast();
     }
 }
