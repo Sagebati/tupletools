@@ -1,6 +1,6 @@
 [package]
 name = "tupletools"
-version = "0.2.5"
+version = "0.3.0"
 authors = ["Samuel Batissou <samuelbatissou@gmail.com>"]
 description = "Utility functions for tuples"
 license = "Apache-2.0"
@@ -20,4 +20,3 @@ lto = true
 [features]
 no_std = []
 
-[dependencies]
