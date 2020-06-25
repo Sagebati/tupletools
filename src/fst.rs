@@ -1,7 +1,18 @@
+
+#[inline]
+pub fn fst<T: Fst>(t : T) ->  T::Ret {
+    t.fst()
+}
+
+
 pub trait Fst {
     type Ret;
-    fn fst(&self) -> &Self::Ret;
-    fn into_fst(self) -> Self::Ret;
+    fn fst(self) -> Self::Ret;
+}
+
+pub trait FstTest {
+    type Ret;
+    fn fst(self) -> Self::Ret;
 }
 
 macro_rules! impl_fst {
@@ -10,28 +21,37 @@ macro_rules! impl_fst {
     ) => {
         impl < $($t),+ > Fst for ($($t),+) {
             type Ret = $r;
-            fn fst(&self) -> &Self::Ret {
-                &self.0
-            }
-
-            fn into_fst(self) -> Self::Ret {
+            fn fst(self) -> Self::Ret {
                 self.0
+            }
+        }
+
+        impl <'a, $($t),+ > Fst for &'a ($($t),+) {
+            type Ret = &'a $r;
+            fn fst(self) -> Self::Ret {
+                &self.0
             }
         }
     };
 }
 
-impl<T> Fst for (T,) {
+impl<T> Fst for (T, ) {
     type Ret = T;
 
-    fn fst(&self) -> &Self::Ret {
-        &self.0
-    }
-
-    fn into_fst(self) -> Self::Ret {
+    fn fst(self) -> Self::Ret {
         self.0
     }
 }
+
+impl<'a, T> Fst for &'a(T, ) {
+    type Ret = &'a T;
+
+    fn fst(self) -> Self::Ret {
+        &self.0
+    }
+}
+
+
 
 impl_fst!(T0,T1;T0);
 impl_fst!(T0,T1, T2;T0);

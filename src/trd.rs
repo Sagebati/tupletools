@@ -1,7 +1,11 @@
+#[inline]
+pub fn trd<T: Trd>(t: T) -> T::Ret {
+    t.trd()
+}
+
 pub trait Trd {
     type Ret;
-    fn trd(&self) -> &Self::Ret;
-    fn into_trd(self) -> Self::Ret;
+    fn trd(self) -> Self::Ret;
 }
 
 macro_rules! impl_trd {
@@ -10,12 +14,15 @@ macro_rules! impl_trd {
     ) => {
         impl < $($t),+ > Trd for ($($t),+) {
             type Ret = $r;
-            fn trd(&self) -> &Self::Ret {
-                &self.2
-            }
-
-            fn into_trd(self) -> Self::Ret {
+            fn trd(self) -> Self::Ret {
                 self.2
+            }
+        }
+
+        impl <'a, $($t),+ > Trd for &'a ($($t),+) {
+            type Ret = &'a $r;
+            fn trd(self) -> Self::Ret {
+                &self.2
             }
         }
     };

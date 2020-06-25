@@ -7,21 +7,27 @@ mod trd;
 mod cast;
 
 pub use fst::Fst;
+pub use fst::fst;
 pub use ops::add::Addition;
 pub use ops::div::Division;
 pub use ops::mul::Multiply;
 pub use ops::sub::Subtraction;
 pub use cast::CastOneToOne;
 pub use snd::Snd;
+pub use snd::snd;
 pub use trd::Trd;
+pub use trd::trd;
 
 #[cfg(not(feature = "no_std"))]
 #[cfg(test)]
 mod tests {
-    use crate::{Addition, Division, Fst, Multiply, Snd, Subtraction, CastOneToOne};
+    use crate::{Addition, Division, Fst, Multiply, Snd, Subtraction, CastOneToOne, Trd};
+    use crate::fst::fst;
+    use crate::snd::snd;
+    use crate::trd::trd;
 
     #[test]
-    fn fst() {
+    fn fst_test() {
         let x = vec![(2, 3), (3, 4), (4, 5), (5, 6)];
 
         let expected = vec![2, 3, 4, 5];
@@ -30,13 +36,17 @@ mod tests {
             expected
         );
         assert_eq!(
-            x.into_iter().map(Fst::into_fst).collect::<Vec<_>>(),
+            x.clone().into_iter().map(Fst::fst).collect::<Vec<_>>(),
             expected
         );
+        assert_eq!(
+            x.into_iter().map(fst).collect::<Vec<_>>(),
+            expected
+        )
     }
 
     #[test]
-    fn snd() {
+    fn snd_test() {
         let x = vec![(2, 3), (3, 4), (4, 5), (5, 6)];
 
         let expected = vec![3, 4, 5, 6];
@@ -45,7 +55,39 @@ mod tests {
             expected
         );
         assert_eq!(
-            x.into_iter().map(Snd::into_snd).collect::<Vec<_>>(),
+            x.clone().into_iter().map(Snd::snd).collect::<Vec<_>>(),
+            expected
+        );
+        assert_eq!(
+            x.iter().map(snd).cloned().collect::<Vec<_>>(),
+            expected
+        );
+        assert_eq!(
+            x.into_iter().map(snd).collect::<Vec<_>>(),
+            expected
+        );
+    }
+
+    #[test]
+    fn trd_test() {
+        let x = vec![(2, 3, 4), (3, 4, 5), (4, 5, 6), (5, 6, 7)];
+
+        let expected = vec![4, 5, 6, 7];
+        assert_eq!(
+            x.iter().map(Trd::trd).cloned().collect::<Vec<_>>(),
+            expected
+        );
+        assert_eq!(
+            x.clone().into_iter().map(Trd::trd).collect::<Vec<_>>(),
+            expected
+        );
+
+        assert_eq!(
+            x.iter().map(trd).cloned().collect::<Vec<_>>(),
+            expected
+        );
+        assert_eq!(
+            x.into_iter().map(trd).collect::<Vec<_>>(),
             expected
         );
     }

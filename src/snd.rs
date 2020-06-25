@@ -1,7 +1,11 @@
+#[inline]
+pub fn snd<T: Snd>(t: T) -> T::Ret {
+    t.snd()
+}
+
 pub trait Snd {
     type Ret;
-    fn snd(&self) -> &Self::Ret;
-    fn into_snd(self) -> Self::Ret;
+    fn snd(self) -> Self::Ret;
 }
 
 macro_rules! impl_snd {
@@ -10,12 +14,15 @@ macro_rules! impl_snd {
     ) => {
         impl < $($t),+ > Snd for ($($t),+) {
             type Ret = $r;
-            fn snd(&self) -> &Self::Ret {
-                &self.1
-            }
-
-            fn into_snd(self) -> Self::Ret {
+            fn snd(self) -> Self::Ret {
                 self.1
+            }
+        }
+
+        impl <'a, $($t),+ > Snd for &'a ($($t),+) {
+            type Ret = &'a $r;
+            fn snd(self) -> Self::Ret {
+                &self.1
             }
         }
     };
