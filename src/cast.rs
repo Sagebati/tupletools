@@ -3,47 +3,39 @@ pub trait CastOneToOne<Too> {
     fn cast(self) -> Self::Ret;
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T,)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too,);
     fn cast(self) -> Self::Ret {
-        (
-            Too::from(self.0),
-        )
+        (Too::from(self.0),)
     }
 }
 
 impl<T, Too> CastOneToOne<Too> for (T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too);
     fn cast(self) -> Self::Ret {
-        (
-            Too::from(self.0),
-            Too::from(self.1),
-        )
+        (Too::from(self.0), Too::from(self.1))
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too, Too);
     fn cast(self) -> Self::Ret {
-        (
-            Too::from(self.0),
-            Too::from(self.1),
-            Too::from(self.2),
-        )
+        (Too::from(self.0), Too::from(self.1), Too::from(self.2))
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too, Too, Too);
     fn cast(self) -> Self::Ret {
@@ -56,9 +48,9 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too, Too, Too, Too);
     fn cast(self) -> Self::Ret {
@@ -72,9 +64,9 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too, Too, Too, Too, Too);
     fn cast(self) -> Self::Ret {
@@ -89,9 +81,9 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too, Too, Too, Too, Too, Too);
     fn cast(self) -> Self::Ret {
@@ -107,9 +99,9 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too, Too, Too, Too, Too, Too, Too);
     fn cast(self) -> Self::Ret {
@@ -126,9 +118,9 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too, Too, Too, Too, Too, Too, Too, Too);
     fn cast(self) -> Self::Ret {
@@ -146,9 +138,9 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too, Too, Too, Too, Too, Too, Too, Too, Too);
     fn cast(self) -> Self::Ret {
@@ -167,9 +159,9 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too);
     fn cast(self) -> Self::Ret {
@@ -189,9 +181,9 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
     type Ret = (Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too);
     fn cast(self) -> Self::Ret {
@@ -212,11 +204,25 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
-    type Ret = (Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too);
+    type Ret = (
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+    );
     fn cast(self) -> Self::Ret {
         (
             Too::from(self.0),
@@ -236,11 +242,26 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
-    type Ret = (Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too);
+    type Ret = (
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+    );
     fn cast(self) -> Self::Ret {
         (
             Too::from(self.0),
@@ -261,11 +282,27 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
-    type Ret = (Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too);
+    type Ret = (
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+    );
     fn cast(self) -> Self::Ret {
         (
             Too::from(self.0),
@@ -287,11 +324,28 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T)
     }
 }
 
-
 impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T)
-    where Too: From<T>
+where
+    Too: From<T>,
 {
-    type Ret = (Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too, Too);
+    type Ret = (
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+        Too,
+    );
     fn cast(self) -> Self::Ret {
         (
             Too::from(self.0),
@@ -313,4 +367,3 @@ impl<T, Too> CastOneToOne<Too> for (T, T, T, T, T, T, T, T, T, T, T, T, T, T, T,
         )
     }
 }
-    

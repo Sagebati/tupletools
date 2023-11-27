@@ -1,9 +1,7 @@
-
 #[inline]
-pub fn fst<T: Fst>(t : T) ->  T::Ret {
+pub fn fst<T: Fst>(t: T) -> T::Ret {
     t.fst()
 }
-
 
 pub trait Fst {
     type Ret;
@@ -35,7 +33,7 @@ macro_rules! impl_fst {
     };
 }
 
-impl<T> Fst for (T, ) {
+impl<T> Fst for (T,) {
     type Ret = T;
 
     fn fst(self) -> Self::Ret {
@@ -43,15 +41,13 @@ impl<T> Fst for (T, ) {
     }
 }
 
-impl<'a, T> Fst for &'a(T, ) {
+impl<'a, T> Fst for &'a (T,) {
     type Ret = &'a T;
 
     fn fst(self) -> Self::Ret {
         &self.0
     }
 }
-
-
 
 impl_fst!(T0,T1;T0);
 impl_fst!(T0,T1, T2;T0);

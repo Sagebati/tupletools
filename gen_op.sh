@@ -8,16 +8,11 @@ set -f # remove wildcard
 # fourth is the operator "/" or "+"
 
 gen_tuple() {
-  r="("
-  for i in $(seq 1 $1); do
-    if test $i -eq $1; then
-      r="$r T"
-    else
-      r="$r T,"
-    fi
+  for i in $(seq 1 "$1"); do
+    deps=$(test -n "$2" && echo $(deps "T$i") || echo "")
+    r="$r T$i $deps,"
   done
-  r="$r)"
-  echo $r
+  echo "$r"
 }
 
 gen_ops() {
@@ -28,12 +23,17 @@ gen_ops() {
   echo ")"
 }
 
+deps() {
+  echo  ": $trait_name<Output=$1>"
+}
+
 gen_impl() {
-  for i in $(seq 2 16); do
+  for i in $(seq 1 16); do
     echo "
-      impl<T: $3<Output=T>> $1<T> for $(gen_tuple $i){
-          fn $2(self, other: Self) -> Self {
-            $(gen_ops $i self $4 other)
+      impl<$(gen_tuple "$i" yes)> $1 for ($(gen_tuple "$i")){
+          type Output = ($(gen_tuple "$i"));
+          fn $2(self, other: Self) -> Self::Output {
+            $(gen_ops "$i" self "$4" other)
           }
       }
     "
@@ -43,10 +43,12 @@ gen_impl() {
 echo "
 use core::ops::$3;
 
-pub trait $1<T> {
-    fn $2(self, other: Self) -> Self;
+pub trait $1 {
+    type Output;
+    fn $2(self, other: Self) -> Self::Output;
 }
 "
 
+trait_name=$3
 # test
-gen_impl $1 $2 $3 $4
+gen_impl "$1" "$2" "$3" "$4"
