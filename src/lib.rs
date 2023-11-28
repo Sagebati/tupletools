@@ -31,6 +31,7 @@ pub use trd::Trd;
 #[cfg(test)]
 mod tests {
     use crate::*;
+    use crate::head_tail::HeadTail;
 
     #[test]
     fn fst_test() {
@@ -163,5 +164,12 @@ mod tests {
         let x = (1, 3, 4, 5);
 
         assert_eq!((3, 4, 5), x.pop_front())
+    }
+
+    #[test]
+    fn head_tail() {
+        let x = (1,3,4,5);
+
+        assert_eq!((1,(3,4,5)),x.head_tail())
     }
 }
