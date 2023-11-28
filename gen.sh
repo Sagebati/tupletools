@@ -5,5 +5,5 @@ bash gen_op.sh Addition add Add + >src/ops/add.rs
 bash gen_append.sh >src/append.rs
 bash gen_prepend.sh >src/prepend.rs
 bash gen_pop_back.sh >src/pop_back.rs
-bash gen_pop_front.sh >src/pop_front.rs
+bash gen_head_tail.sh >src/head_tail.rs
 cargo fmt

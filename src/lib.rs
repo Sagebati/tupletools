@@ -3,6 +3,7 @@
 mod append;
 mod cast;
 mod fst;
+mod head_tail;
 mod ops;
 mod pop_back;
 mod pop_front;
@@ -10,6 +11,7 @@ mod prepend;
 mod snd;
 mod trd;
 
+pub use append::Append;
 pub use cast::CastOneToOne;
 pub use fst::fst;
 pub use fst::Fst;
@@ -17,14 +19,13 @@ pub use ops::add::Addition;
 pub use ops::div::Division;
 pub use ops::mul::Multiply;
 pub use ops::sub::Subtraction;
+pub use pop_back::PopBack;
+pub use pop_front::PopFront;
+pub use prepend::Prepend;
 pub use snd::snd;
 pub use snd::Snd;
 pub use trd::trd;
 pub use trd::Trd;
-pub use append::Append;
-pub use prepend::Prepend;
-pub use pop_front::PopFront;
-pub use pop_back::PopBack;
 
 #[cfg(not(feature = "no_std"))]
 #[cfg(test)]
