@@ -26,6 +26,7 @@ pub use snd::snd;
 pub use snd::Snd;
 pub use trd::trd;
 pub use trd::Trd;
+pub use head_tail::HeadTail;
 
 #[cfg(not(feature = "no_std"))]
 #[cfg(test)]
